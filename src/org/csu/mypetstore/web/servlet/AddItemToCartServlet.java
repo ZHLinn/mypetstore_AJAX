@@ -48,7 +48,6 @@ public class AddItemToCartServlet extends HttpServlet {
         }
 
 
-
         if (cart.containsItemId(workingItemId)) {
             cart.incrementQuantityByItemId(workingItemId);
         } else {
@@ -58,8 +57,6 @@ public class AddItemToCartServlet extends HttpServlet {
             cart.addItem(item, isInStock);
         }
         session.setAttribute("cart", cart);
-
-
 
 
         if(account!=null && account.isAuthenticated()){

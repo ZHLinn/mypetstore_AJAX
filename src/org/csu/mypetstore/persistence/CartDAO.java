@@ -18,4 +18,5 @@ public interface CartDAO {
 
     void clearCart(String username);
 
+    boolean checkIfDbCartContainsItem( String itemId, String username );
 }

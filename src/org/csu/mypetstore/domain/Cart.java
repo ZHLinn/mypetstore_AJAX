@@ -70,7 +70,10 @@ public class Cart implements Serializable {
 
     public void setQuantityByItemId(String itemId, int quantity) {
         CartItem cartItem = (CartItem) itemMap.get(itemId);
-        cartItem.setQuantity(quantity);
+        if(cartItem != null){
+            cartItem.setQuantity(quantity);
+        }
+
     }
 
     public int getQuantityByItemId(String itemId) {

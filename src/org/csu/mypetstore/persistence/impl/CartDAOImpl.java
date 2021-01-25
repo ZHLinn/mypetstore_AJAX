@@ -1,5 +1,6 @@
 package org.csu.mypetstore.persistence.impl;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.csu.mypetstore.domain.*;
 import org.csu.mypetstore.persistence.CartDAO;
 import org.csu.mypetstore.persistence.DBUtil;
@@ -15,9 +16,11 @@ import java.util.List;
 
 public class CartDAOImpl implements CartDAO {
     private static final String GET_CART_ITEMS_BY_USERNAME = "SELECT ITEMID, QUANTITY, VALID FROM CARTITEM WHERE USERNAME = ?";
-    private static final String INSERT_CARD_ITEM = "INSERT INTO CARTITEM (USERNAME,ITEMID, QUANTITY) VALUES (?, ?, ?)";
+    private static final String CHECK_IF_DB_CONTAINS_PRODUCT_ID = "SELECT ITEMID, QUANTITY, VALID FROM CARTITEM WHERE USERNAME = ? AND ITEMID = ?";
+    private static final String INSERT_CARD_ITEM = "INSERT INTO CARTITEM (USERNAME, ITEMID, QUANTITY) VALUES (?, ?, ?)";
     private static final String UPDATE_CART_ITEM_QUANTITY = "UPDATE CARTITEM SET QUANTITY = ? WHERE USERNAME = ? AND ITEMID = ?";
     private static final String SET_CART_ITEM_ISVALID = "UPDATE CARTITEM SET VALID = ? WHERE USERNAME = ? AND ITEMID = ?";
+
 
     CatalogService catalogService;
 
@@ -81,7 +84,10 @@ public class CartDAOImpl implements CartDAO {
 
                 DBUtil.closePreparedStatement(updateStatement);
                 DBUtil.closeConnection(connection);
-            }else{
+            }else if ( checkIfDbCartContainsItem(itemId, username) ) {
+                updateItemValid(username, itemId, true);
+                updateItemQuantity(username, itemId, 1);
+            } else {
                 PreparedStatement insertStatement = connection.prepareStatement(INSERT_CARD_ITEM);
                 insertStatement.setString(1, username);
                 insertStatement.setString(2, itemId);
@@ -96,6 +102,7 @@ public class CartDAOImpl implements CartDAO {
         }
     }
 
+    @Override
     public void updateItemValid(String username, String itemId, boolean valid){
         try{
             Connection connection = DBUtil.getConnection();
@@ -129,6 +136,36 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
+    public boolean checkIfDbCartContainsItem(String itemId, String username) {
+        if(catalogService == null){
+            catalogService = new CatalogService();
+        }
+
+        try{
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(CHECK_IF_DB_CONTAINS_PRODUCT_ID);
+            pStatement.setString(1, username);
+            pStatement.setString(2, itemId);
+            ResultSet resultSet = pStatement.executeQuery();
+
+            Boolean isContained = resultSet.next();
+
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+
+            return isContained;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        return false;
+    }
+
+    @Override
     public void updateItemQuantity(String username, String itemId, int quantity) {
 //        Cart cart = getCartByUsername(username);
         try{
@@ -139,8 +176,6 @@ public class CartDAOImpl implements CartDAO {
             }
 
             PreparedStatement updateStatement = connection.prepareStatement(UPDATE_CART_ITEM_QUANTITY);
-//            cart.incrementQuantityByItemId(itemId);
-//            quantity = cart.getQuantityByItemId(itemId);
             cart.setQuantityByItemId(itemId, quantity);
             updateStatement.setInt(1, quantity );
             updateStatement.setString(2, username);
@@ -153,9 +188,5 @@ public class CartDAOImpl implements CartDAO {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
-
-
 }
