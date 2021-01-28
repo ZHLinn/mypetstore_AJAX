@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class RemoveItemFromCartServlet extends HttpServlet {
     private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
@@ -48,10 +49,19 @@ public class RemoveItemFromCartServlet extends HttpServlet {
                 String logDescription = "Remove Item, Item ID: " + workingItemId;
                 Log log = new Log(account.getUsername(), Log.UPDATE_CART, logDescription);
                 logService.insertLogInfo(log);
-
-
             }
-            request.getRequestDispatcher(VIEW_CART).forward(request, response);
+
+            response.setContentType( "text/plain" );
+            PrintWriter out = response.getWriter();
+            if(cart.getNumberOfItems() == 0){
+                out.print("Cart Empty");
+            }else{
+                out.print("Cart Not Empty");
+            }
+
+//            request.getRequestDispatcher(VIEW_CART).forward(request, response);
+            out.flush();
+            out.close();
         }
     }
 }

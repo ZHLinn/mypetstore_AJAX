@@ -28,7 +28,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="js/function.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-
+    <script type="text/javascript" src="js/SearchBoxAutoComplete.js"></script>
 </head>
 
 <body>
@@ -75,8 +75,12 @@
         <div id="Search">
             <div id="SearchContent">
                 <form action="searchProduct" method="post">
-                    <input type="text" name="keyword" size="14" />
-                    <input type="submit" name="searchProducts" value="Search" />
+                    <div class="autocomplete">
+                        <input type="text" id="keyword" name="keyword" size="14" onclick="initAutoComplete();"/>
+                        <input type="submit" name="searchProducts" value="Search" />
+                    </div>
+<%--                    <script>autocomplete(document.getElementById('keyword'), productArray )</script>--%>
+
                 </form>
             </div>
         </div>

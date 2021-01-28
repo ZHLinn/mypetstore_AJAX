@@ -1,5 +1,4 @@
 package org.csu.mypetstore.persistence.impl;
-import org.csu.mypetstore.domain.Category;
 import org.csu.mypetstore.domain.Product;
 import org.csu.mypetstore.persistence.DBUtil;
 import org.csu.mypetstore.persistence.ProductDAO;
@@ -12,8 +11,9 @@ import java.util.List;
 
 public class ProductImpl implements ProductDAO {
     private static final String GET_PRODUCT_LIST_BY_CATEGORY = "SELECT PRODUCTID, CATEGORY, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE CATEGORY = ?";
-    private static final String GET_PRODUCT = "SELECT PRODUCTID, CATEGORY, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = ?";
-    private static final String SEARCH_PRODUCT_LIST = "SELECT PRODUCTID, CATEGORY, NAME, DESCN as description, CATEGORY as categoryId from PRODUCT WHERE lower(name) like ?";
+    private static final String GET_PRODUCT_BY_PRODUCT_ID = "SELECT PRODUCTID, CATEGORY, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = ?";
+    private static final String SEARCH_PRODUCT_LIST = "SELECT PRODUCTID, CATEGORY, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE lower(name) like ?";
+    private static final String GET_ALL_PRODUCT_LIST = "SELECT * FROM PRODUCT";
 
     @Override
     public List<Product> getProductListByCategory(String categoryId) {
@@ -48,7 +48,7 @@ public class ProductImpl implements ProductDAO {
         Product product = null;
         try{
             Connection connection = DBUtil.getConnection();
-            PreparedStatement pStatement = connection.prepareStatement(GET_PRODUCT);
+            PreparedStatement pStatement = connection.prepareStatement( GET_PRODUCT_BY_PRODUCT_ID );
             pStatement.setString(1, productId );
             ResultSet resultSet = pStatement.executeQuery();
             if( resultSet.next() ){
@@ -67,6 +67,32 @@ public class ProductImpl implements ProductDAO {
         }
 
         return product;
+    }
+
+    @Override
+    public List<Product> getAllProductList() {
+        List<Product> products = new ArrayList<>();
+        try{
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement( GET_ALL_PRODUCT_LIST );
+            ResultSet resultSet = pStatement.executeQuery();
+            while( resultSet.next() ){
+                Product product = new Product(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4)
+                );
+                products.add(product);
+            }
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return products;
     }
 
     @Override
@@ -95,6 +121,9 @@ public class ProductImpl implements ProductDAO {
 
         return products;
     }
+
+
+
 //
 //    //测试setString语句
 //    public static void main(String[] args) throws Exception{

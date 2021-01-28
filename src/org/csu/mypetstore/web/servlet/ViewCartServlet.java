@@ -17,28 +17,32 @@ public class ViewCartServlet extends HttpServlet {
     private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
     private CartService cartService;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+    protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        doGet( request, response );
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Cart cart = (Cart)session.getAttribute("cart");
-        Account account = (Account)session.getAttribute("account");
+        Cart cart = (Cart) session.getAttribute( "cart" );
+        Account account = (Account) session.getAttribute( "account" );
         cartService = new CartService();
 
-        if (cart == null) {
+        if ( cart == null && ( account == null || !account.isAuthenticated() ) ) {
             cart = new Cart();
-            cart = cartService.getCartByUsername(account.getUsername());
-            session.setAttribute("cart", cart);
+            session.setAttribute( "cart", cart );
         }
 
-        if(account!=null && account.isAuthenticated()){
+        if ( account != null && account.isAuthenticated() ) {
+            //Get cart items from database
+            cart = cartService.getCartByUsername( account.getUsername() );
+            session.setAttribute( "cart", cart );
+
+            //Insert log
             LogService logService = new LogService();
             String logDescription = "View Cart";
-            Log log = new Log(account.getUsername(), Log.VIEW, logDescription);
-            logService.insertLogInfo(log);
+            Log log = new Log( account.getUsername(), Log.VIEW, logDescription );
+            logService.insertLogInfo( log );
         }
-        request.getRequestDispatcher(VIEW_CART).forward(request, response);
+        request.getRequestDispatcher( VIEW_CART ).forward( request, response );
     }
 }

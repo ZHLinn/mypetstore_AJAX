@@ -46,7 +46,6 @@ public class CatalogService {
         return productDAO.searchProductList("%" + keyword.toLowerCase() + "%");
     }
 
-
     public List<Item> getItemListByProduct(String productId) {
         return itemDAO.getItemListByProduct(productId);
     }
@@ -58,4 +57,10 @@ public class CatalogService {
     public boolean isItemInStock(String itemId) {
         return itemDAO.getInventoryQuantity(itemId) > 0;
     }
+
+    public List<Product> getAllProductList(){
+        return productDAO.getAllProductList();
+    }
+
+
 }
