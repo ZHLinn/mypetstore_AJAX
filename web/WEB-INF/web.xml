@@ -108,6 +108,14 @@
         <servlet-name>IsUsernameExistServlet</servlet-name>
         <servlet-class>org.csu.mypetstore.web.servlet.IsUsernameExistServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchBoxAutoCompleteServlet</servlet-name>
+        <servlet-class>org.csu.mypetstore.web.servlet.SearchBoxAutoCompleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAllProductListServlet</servlet-name>
+        <servlet-class>org.csu.mypetstore.web.servlet.GetAllProductListServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -209,6 +217,14 @@
     <servlet-mapping>
         <servlet-name>IsUsernameExistServlet</servlet-name>
         <url-pattern>/isUsernameExistServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchBoxAutoCompleteServlet</servlet-name>
+        <url-pattern>/searchBoxAutoComplete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAllProductListServlet</servlet-name>
+        <url-pattern>/getAllProductList</url-pattern>
     </servlet-mapping>
 
 

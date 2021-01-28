@@ -10,5 +10,7 @@ public interface ProductDAO {
 
     Product getProduct(String productId);
 
+    List<Product> getAllProductList();
+
     List<Product> searchProductList(String keywords);
 }
