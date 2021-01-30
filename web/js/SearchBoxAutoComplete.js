@@ -122,13 +122,13 @@ function autocomplete( inp, arr ) {
 }
 
 function createXMLHttpRequest() {
-    if ( window.XMLHttpRequest )  //For all kinds of Browsers except for IE
+    if ( window.XMLHttpRequest )  /*For all kinds of Browsers except for IE*/
     {
         xhr = new XMLHttpRequest();
-    } else if ( window.ActiveObject )  //For IE6 and above
+    } else if ( window.ActiveObject )  /*For IE6 and above*/
     {
         xhr = new ActiveObject( "Msxml2.XMLHTTP" );
-    } else //For IE under version 6
+    } else /*For IE under version 6*/
     {
         xhr = new ActiveObject( "Microsoft.XMLHTTP" );
     }

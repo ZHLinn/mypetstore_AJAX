@@ -21,7 +21,6 @@ function isUsernameExist() {
     if ( input ) {
         username = input.value;
     }
-    // console.log( username );
     //声明XHR对象
     createXMLHttpRequest();
     //初始化url
@@ -46,13 +45,9 @@ function processResponse() {
 
             if ( trimedInfo === 'Exist' ) {
                 msgDiv.innerHTML = "<font color='red'>用户名已存在</font>";
-                console.log( 'E Insertion' );
             } else if ( trimedInfo === 'Not Exist' ) {
                 msgDiv.innerHTML = "<font color='green'>用户名可用</font>";
-                console.log( 'NE Insertiion' );
             }
-            console.log( responseInfo );
-            console.log( 'username is' + username );
         }
     }
 }

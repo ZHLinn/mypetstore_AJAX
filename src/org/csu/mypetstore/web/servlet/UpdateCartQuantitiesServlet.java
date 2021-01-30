@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 
 public class UpdateCartQuantitiesServlet extends HttpServlet {
@@ -31,17 +32,22 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
         cart = (Cart) session.getAttribute("cart");
         account = (Account)session.getAttribute("account");
         CartService cartService = new CartService();
+        int quantity, originalQuantity;
 
         Iterator<CartItem> cartItems = cart.getAllCartItems();
+        boolean isSthRemoved = false;
+        StringBuilder removedItemsString = new StringBuilder("");
         while (cartItems.hasNext()) {
             CartItem cartItem = cartItems.next();
             String itemId = cartItem.getItem().getItemId();
             try {
-                int quantity = Integer.parseInt(request.getParameter(itemId));
-                int originalQuantity = cart.getQuantityByItemId(itemId);
+                quantity = Integer.parseInt(request.getParameter(itemId));
+                originalQuantity = cart.getQuantityByItemId(itemId);
                 cart.setQuantityByItemId(itemId, quantity);
                 if (quantity < 1) {
                     cartItems.remove();
+                    removedItemsString.append( "," ).append( cartItem.getItem().getItemId() );
+                    isSthRemoved = true;
                     if(account!=null && account.isAuthenticated()){
                         cartService.removeItemFromCart(account.getUsername(), itemId);
 
@@ -60,13 +66,36 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
                         logService.insertLogInfo(log);
                     }
                 }
-
             } catch (Exception e) {
                 session.setAttribute("message", "The Quantities of Item must be Integer!");
-                request.getRequestDispatcher(ERROR).forward(request, response);
+//                request.getRequestDispatcher(ERROR).forward(request, response);
                 return;
             }
         }
-        request.getRequestDispatcher(VIEW_CART).forward(request, response);
+
+        session.setAttribute( "cart", cart );
+
+        StringBuilder message = new StringBuilder("");
+
+        if( !isSthRemoved ){
+            message.append( "No Remove Action" );
+        }else{
+
+            message.append( "Remove Action/" ); /*Append a '/' in the end for js to call split('/')*/
+            if(cart.getNumberOfItems() == 0){
+                message.append( "Empty" );
+            }
+            message.append( removedItemsString );
+        }
+
+
+
+        response.setContentType( "text/plain" );
+        PrintWriter out = response.getWriter();
+        out.write(message.toString());
+        out.flush();
+        out.close();
+
+//        request.getRequestDispatcher(VIEW_CART).forward(request, response);
     }
 }

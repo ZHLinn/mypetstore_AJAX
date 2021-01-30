@@ -76,7 +76,7 @@
             <div id="SearchContent">
                 <form action="searchProduct" method="post">
                     <div class="autocomplete">
-                        <input type="text" id="keyword" name="keyword" size="14" />
+                        <input type="text" id="keyword" name="keyword" size="14" onclick="initAutoComplete();"/>
                         <input type="submit" name="searchProducts" value="Search" />
                     </div>
 <%--                    <script>autocomplete(document.getElementById('keyword'), productArray )</script>--%>

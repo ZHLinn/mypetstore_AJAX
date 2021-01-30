@@ -368,7 +368,7 @@ fieldset {
   min-inline-size: min-content;
 }
 
-
+/*style sheets for auto-complete */
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;

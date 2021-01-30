@@ -9,9 +9,11 @@
     <div id="Cart">
 
         <h2>Shopping Cart</h2>
-        <form action="updateCartQuantities" method="post">
+        <script type="text/javascript" src="js/UpdateCart.js"></script>
+<%--        <form action="updateCartQuantities" method="post">--%>
+        <form id="cartForm">
             <table>
-                <tr>
+                <tr  class="trHead">
                     <th><b>Item ID</b></th>
                     <th><b>Product ID</b></th>
                     <th><b>Description</b></th>
@@ -28,8 +30,22 @@
                     </tr>
                 </c:if>
 
+                <script>
+                    /*To get the mouse becoming the shape of a finger when hovering over <a class="button">*/
+                    jQuery(document).ready(
+                        function (){
+                            $('#cartForm a.button').click(
+                                function ( event ){
+                                    event.preventDefault();
+                                }
+                            );
+                        }
+                    );
+
+                </script>
+
                 <c:forEach var="cartItem" items="${sessionScope.cart.cartItems}">
-                    <tr>
+                    <tr itemid="${cartItem.item.itemId}">
                         <td>
                             <a href="viewItem?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a>
                         </td>
@@ -54,13 +70,13 @@
                             <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" />
                         </td>
                         <td>
-                            <a href="removeItemFromCart?workingItemId=${cartItem.item.itemId}" class="Button">Remove</a>
+                            <a onclick="removeCartItemRequest('${cartItem.item.itemId}')" href="#" class="Button">Remove</a>
                         </td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <td colspan="7">
-                        <input type="submit" value="Update Cart"/>
+                        <a onclick="updateCartRequest()" href="#" value="Update Cart" class="button">Update Cart</a>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
