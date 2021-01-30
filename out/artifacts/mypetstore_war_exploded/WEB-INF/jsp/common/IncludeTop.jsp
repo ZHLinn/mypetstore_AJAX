@@ -31,7 +31,7 @@
     <script type="text/javascript" src="js/SearchBoxAutoComplete.js"></script>
 </head>
 
-<body>
+<body onload="initAutoComplete();">
 
     <div id="Header">
 
