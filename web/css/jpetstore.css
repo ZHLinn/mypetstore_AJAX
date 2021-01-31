@@ -278,6 +278,33 @@ body>#Banner {
   width: 30%;
 }
 
+#HoverSideBar {
+  position: absolute;
+  right: 20%;
+  top: 20%;
+  /*float: right;*/
+  z-index: 99;
+  background:inherit;
+  width: 5%;
+  visibility: hidden;
+  text-align: right;
+
+  /*!* inner flex layout*!*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*alignment: left;*/
+}
+
+
+#HoverSidebarContent ul{
+  margin: 5px;
+}
+
+#HoverSidebarContent p{
+  padding: 5px;
+}
+
+
 #MainImage {
   float: left;
   background:inherit;
