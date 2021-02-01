@@ -61,7 +61,7 @@
                                 ${cartItem.inStock}
                         </td>
                         <td>
-                            <input type="text" name="${cartItem.item.itemId}" value="${cartItem.quantity}" />
+                            <input type="text" name="${cartItem.item.itemId}" value="${cartItem.quantity}" onchange="updateCartRequest()" />
                         </td>
                         <td>
                             <fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" />

@@ -14,6 +14,8 @@
 <head>
     <link rel="StyleSheet" href="css/jpetstore.css" type="text/css"
           media="screen" />
+    <link rel="StyleSheet" href="css/jquery-ui.css" type="text/css"
+          media="screen" />
 
     <meta name="generator"
           content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org" />
@@ -28,6 +30,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="js/function.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/SearchBoxAutoComplete.js"></script>
 </head>
 

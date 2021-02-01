@@ -15,7 +15,8 @@ import java.util.List;
 
 public class ProceedToCheckOutServlet extends HttpServlet {
     private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/SignonForm.jsp";
-    private static final String NEW_ORDER_FORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
+//    private static final String NEW_ORDER_FORM = "/WEB-INF/jsp/order/NewOrderForm.jsp";
+    private static final String NEW_ORDER_FORM = "/WEB-INF/jsp/order/NewOrder.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
