@@ -80,9 +80,6 @@
         <input type="submit" name="newOrder" value="Continue" class="button" />
     </form>
 
-
-
-
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

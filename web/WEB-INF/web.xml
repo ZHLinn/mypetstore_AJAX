@@ -120,6 +120,10 @@
         <servlet-name>GetProductListByCategoryServlet</servlet-name>
         <servlet-class>org.csu.mypetstore.web.servlet.GetProductLIstByCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessOrderInfoServlet</servlet-name>
+        <servlet-class>org.csu.mypetstore.web.servlet.ProcessOrderInfoServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
@@ -232,6 +236,10 @@
     <servlet-mapping>
         <servlet-name>GetProductListByCategoryServlet</servlet-name>
         <url-pattern>/getProductListByCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessOrderInfoServlet</servlet-name>
+        <url-pattern>/processOrderInfo</url-pattern>
     </servlet-mapping>
 
 

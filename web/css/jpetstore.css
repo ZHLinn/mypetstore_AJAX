@@ -333,6 +333,21 @@ body>#Banner {
   cursor:pointer;
 }
 
+#OrderTabs input[type="submit"]{
+  padding: .3ex;
+  color: #fff;
+  background-color: #005e21;
+  text-decoration: none;
+  font-family: helvetica, tahoma, arial, verdana, sans-serif;
+  font-size: 1.5ex;
+  border-width:0;
+}
+#OrderTabs input[type="submit"]:hover {
+  color: #000;
+  background-color: #54c07a;
+  cursor:pointer;
+}
+
 /*#Catalog input[type="text"] {*/
 /*  font-size: 120%;*/
 /*  color: #5a5854;*/
@@ -429,3 +444,14 @@ fieldset {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.disabled{
+  pointer-events:none;
+  cursor:default;
+  color: gray;
+}
+
+/*.abled{*/
+/*  cursor: pointer;*/
+/*  pointer-events: auto;*/
+/*}*/
