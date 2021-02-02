@@ -1,9 +1,12 @@
 package org.csu.mypetstore.web.servlet;
 
 import org.csu.mypetstore.domain.Account;
+import org.csu.mypetstore.domain.Cart;
 import org.csu.mypetstore.domain.Log;
 import org.csu.mypetstore.persistence.AccountDAO;
 import org.csu.mypetstore.persistence.impl.AccountDAOImpl;
+import org.csu.mypetstore.service.AccountService;
+import org.csu.mypetstore.service.CartService;
 import org.csu.mypetstore.service.LogService;
 
 import javax.servlet.ServletException;
@@ -18,19 +21,25 @@ public class LoginServlet extends HttpServlet {
     private static final String MAIN = "/WEB-INF/jsp/catalog/Main.jsp";
     private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/SignonForm.jsp";
 
+    private CartService cartService;
+    private AccountService accountService;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AccountDAO accountDAO = new AccountDAOImpl();
+        accountService = new AccountService();
+        cartService = new CartService();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPassword(password);
-        account = accountDAO.getAccountByUsernameAndPassword(account);
+        Account account;
+//        account = new Account();
+//        account.setUsername(username);
+//        account.setPassword(password);
+        account = accountService.getAccount(username, password);
 
         HttpSession session = request.getSession();
-        String vrfCodeInput = request.getParameter("vrfCode");
-        String theCode = (String)session.getAttribute("theCode");
+//        String vrfCodeInput = request.getParameter("vrfCode");
+//        String theCode = (String)session.getAttribute("theCode");
 //        //验证码是否正确
 //        if( null == vrfCodeInput || !vrfCodeInput.equalsIgnoreCase(theCode) ){
 //            request.setAttribute("message", "Invalid verification code. Signon failed.");
@@ -61,9 +70,11 @@ public class LoginServlet extends HttpServlet {
         if(account != null){
             account.setAuthenticated(true);
             session.setAttribute("account", account );
+
             LogService logService = new LogService();
             Log log = new Log(username, Log.LOG_IN, "Successfully");
             logService.insertLogInfo(log);
+
 
             message = "Log-in Succeed";
 //
