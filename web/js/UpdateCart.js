@@ -4,11 +4,13 @@ var respMsgArray;
 var updateCartRequest = function () {
     createXMLHttpRequest();
     let parameters = $( '#cartForm' ).serialize();
+    console.log(parameters);
     let url = "updateCartQuantities?" + parameters;
     xhr.open( "GET", url, true );
     xhr.onreadystatechange = function () {
         if ( xhr.readyState == 4 ) {
             if ( xhr.status == 200 ) {
+                console.log(xhr.responseText);
                 respMsgArray = xhr.responseText.split( ',' );
                 // debugger
                 if ( respMsgArray.length > 1 ) {

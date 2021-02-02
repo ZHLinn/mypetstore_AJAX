@@ -48,6 +48,7 @@ public class CartDAOImpl implements CartDAO {
                 if(cartItemDB.isValid()){
                     isInStock = catalogService.isItemInStock(cartItemDB.getItemId());
                     Item item = catalogService.getItem(cartItemDB.getItemId());
+                    item.setQuantity( cartItemDB.getQuantity() );
                     cart.addItem(item,isInStock);
                     cartItemDBList.add(cartItemDB);
                 }
