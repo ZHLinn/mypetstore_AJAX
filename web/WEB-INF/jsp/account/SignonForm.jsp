@@ -22,10 +22,8 @@
 <div id="Catalog">
     <p>Please enter your username and password.</p>
 
-
-
     <form action="login" method="post">
-        <table>
+        <table class="rwd-table">
             <tr>
                 <td>        Username:</td>
                 <td><input type="text" name="username" value="j2ee"></td>
@@ -44,7 +42,7 @@
         </table>
 
         <p>
-            <input type="submit" name="signon" value="Login" class="button"></>
+            <input type="submit" name="signon" value="Login" class="btn"></input>
         </p>
 
     </form>

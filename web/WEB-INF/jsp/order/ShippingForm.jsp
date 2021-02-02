@@ -9,7 +9,7 @@
 
 <div id="Catalog">
     <form action="editShippingAddress" method="post">
-    <table>
+    <table class="rwd-table">
         <tr>
             <th colspan=2>Shipping Address</th>
         </tr>

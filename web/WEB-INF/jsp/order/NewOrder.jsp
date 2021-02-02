@@ -19,7 +19,7 @@
 
         <div id="tabs-1">
             <%--            <form action="confirmOrder" method="post">--%>
-            <table>
+            <table class="rwd-table">
                 <tr>
                     <th colspan=2>Payment Details</th>
                 </tr>
@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <td>Card Number:</td>
-                    <td><input typr="text" name="creditCard" value="${sessionScope.order.creditCard}"/> * Use a fake
+                    <td><input type="text" name="creditCard" value="${sessionScope.order.creditCard}"/> * Use a fake
                         number!
                     </td>
                 </tr>
@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <td>Country:</td>
-                    <td><input type="text" t size="15" name="billCountry" value="${sessionScope.order.billCountry}"/>
+                    <td><input type="text"  size="15" name="billCountry" value="${sessionScope.order.billCountry}"/>
                     </td>
                 </tr>
 
@@ -92,13 +92,13 @@
 
             </table>
 
-            <%--                <input type="submit" name="newOrder" value="Continue" class="button" />--%>
+            <%--                <input type="submit" name="newOrder" value="Continue" class="btn" />--%>
             <%--            </form>--%>
         </div>
 
         <div id="tabs-2">
             <%--            <form action="editShippingAddress" method="post">--%>
-            <table>
+            <table class="rwd-table">
                 <tr>
                     <th colspan=2>Shipping Address</th>
                 </tr>
@@ -147,7 +147,7 @@
         </div>
 
         <p>
-            <input type="submit" name="newOrder" value="Confirm" class="button"/>
+            <input type="submit" name="newOrder" value="Confirm" class="btn"/>
         </p>
 
     </div>

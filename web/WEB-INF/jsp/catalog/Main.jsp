@@ -38,6 +38,7 @@
     <div id="MainImage">
         <div id="MainImageContent">
             <div id="HoverSideBar" >
+                <img>
                 <div id="HoverSidebarContent"></div>
             </div>
             <map name="estoremap">

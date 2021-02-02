@@ -22,7 +22,7 @@
 
 <div id="Catalog">
 
-    <table>
+    <table class="rwd-table">
         <tr>
             <th align="center" colspan="2">Order #${sessionScope.order.orderId}
                 <fmt:formatDate value="${sessionScope.order.orderDate}"
@@ -123,7 +123,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <table>
+                <table class="rwd-table">
                     <tr>
                         <th>Item ID</th>
                         <th>Description</th>

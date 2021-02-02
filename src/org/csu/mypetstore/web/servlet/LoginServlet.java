@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class LoginServlet extends HttpServlet {
     private static final String MAIN = "/WEB-INF/jsp/catalog/Main.jsp";
@@ -30,27 +31,57 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String vrfCodeInput = request.getParameter("vrfCode");
         String theCode = (String)session.getAttribute("theCode");
-        //验证码是否正确
-        if( null == vrfCodeInput || !vrfCodeInput.equalsIgnoreCase(theCode) ){
-            request.setAttribute("message", "Invalid verification code. Signon failed.");
-            request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
-            return;
-        }
+//        //验证码是否正确
+//        if( null == vrfCodeInput || !vrfCodeInput.equalsIgnoreCase(theCode) ){
+//            request.setAttribute("message", "Invalid verification code. Signon failed.");
+//            request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
+//            return;
+//        }
 
+        //同步方式完成登录
+//        if(account != null){
+//            account.setAuthenticated(true);
+//            session.setAttribute("account", account );
+//            LogService logService = new LogService();
+//            Log log = new Log(username, Log.LOG_IN, "Successfully");
+//            logService.insertLogInfo(log);
+//            request.getRequestDispatcher(MAIN).forward(request,response);
+//        }else{
+//            request.setAttribute("message", "Invalid username or password. Signon failed.");
+//            request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
+//            LogService logService = new LogService();
+//            Log log = new Log(username, Log.LOG_IN, "failed");
+//            logService.insertLogInfo(log);
+//        }
+
+        PrintWriter out = response.getWriter();
+        String message;
+
+        //异步方式完成登录
         if(account != null){
             account.setAuthenticated(true);
             session.setAttribute("account", account );
             LogService logService = new LogService();
             Log log = new Log(username, Log.LOG_IN, "Successfully");
             logService.insertLogInfo(log);
-            request.getRequestDispatcher(MAIN).forward(request,response);
+
+            message = "Log-in Succeed";
+//
+//            request.getRequestDispatcher(MAIN).forward(request,response);
         }else{
             request.setAttribute("message", "Invalid username or password. Signon failed.");
-            request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
+//            request.getRequestDispatcher(SIGN_ON_FORM).forward(request,response);
+            session.setAttribute("account", null );
             LogService logService = new LogService();
             Log log = new Log(username, Log.LOG_IN, "failed");
             logService.insertLogInfo(log);
+
+            message = "Log-in Failed";
         }
+
+        out.print( message );
+        out.flush();
+        out.close();
 
     }
 

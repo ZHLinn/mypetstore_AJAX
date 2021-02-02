@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/UpdateCart.js"></script>
 <%--        <form action="updateCartQuantities" method="post">--%>
         <form id="cartForm">
-            <table>
+            <table class="rwd-table">
                 <tr  class="trHead">
                     <th><b>Item ID</b></th>
                     <th><b>Product ID</b></th>
@@ -31,10 +31,10 @@
                 </c:if>
 
                 <script>
-                    /*To get the mouse becoming the shape of a finger when hovering over <a class="button">*/
+                    /*To get the mouse becoming the shape of a finger when hovering over <a class="btn">*/
                     jQuery(document).ready(
                         function (){
-                            $('#cartForm a.button').click(
+                            $('#cartForm a.btn').click(
                                 function ( event ){
                                     event.preventDefault();
                                 }
@@ -70,21 +70,32 @@
                             <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" />
                         </td>
                         <td>
-                            <a onclick="removeCartItemRequest('${cartItem.item.itemId}')" href="#" class="Button">Remove</a>
+                            <a onclick="removeCartItemRequest('${cartItem.item.itemId}')" href="#" class="btn">Remove</a>
                         </td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <td colspan="7">
-                        <a onclick="updateCartRequest()" href="#" value="Update Cart" class="button">Update Cart</a>
+                        <a onclick="updateCartRequest()" href="#" value="Update Cart" class="btn">Update Cart</a>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
         </form>
 
+        <div id="to-check-out">
+
+        </div>
         <c:if test="${sessionScope.cart.numberOfItems > 0}">
-            <a href="proceedToCheckOut" class="Button">Proceed to Checkout</a>
+            <c:if test="${sessionScope.account != null }">
+                <c:if test="${sessionScope.account.authenticated}">
+                    <a href="proceedToCheckOut" class="btn">Proceed to Checkout</a>
+                </c:if>
+            </c:if>
+            <c:if test="${sessionScope.account == null }">
+                <p id="note">You need to log in before checking out.</p>
+            </c:if>
+
         </c:if>
     </div>
 
