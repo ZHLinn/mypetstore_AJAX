@@ -21,20 +21,26 @@ function isUsernameExist() {
     if ( input ) {
         username = input.value;
     }
-    //声明XHR对象
-    createXMLHttpRequest();
-    //初始化url
-    var url = "isUsernameExistServlet?username=" + username;
-    //建立对服务器的调用
-    xhr.open( "GET", url, true ); //默认为true,即异步通信
-    xhr.onreadystatechange = processResponse;
-    xhr.send( null );
+    if(username.trim() != ''){
+        //声明XHR对象
+        createXMLHttpRequest();
+        //初始化url
+        var url = "isUsernameExistServlet?username=" + username;
+        //建立对服务器的调用
+        xhr.open( "GET", url, true ); //默认为true,即异步通信
+        xhr.onreadystatechange = processResponse;
+        xhr.send( null );
+    }else{
+        var msgDiv = document.getElementById( 'isExistInfo' );
+        msgDiv.innerHTML = "<font color='yellow'>Username Needed.</font>";
+    }
+
 }
 
 function processResponse() {
     if ( xhr.readyState == 4 ) {
         if ( xhr.status == 200 ) {
-            debugger
+            // debugger
             var responseInfo = xhr.responseText;
 
             //删除返回信息后边的回车符
@@ -44,9 +50,9 @@ function processResponse() {
             var msgDiv = document.getElementById( 'isExistInfo' );
 
             if ( trimedInfo === 'Exist' ) {
-                msgDiv.innerHTML = "<font color='red'>用户名已存在</font>";
+                msgDiv.innerHTML = "<font color='red'>Username Already Existed.</font>";
             } else if ( trimedInfo === 'Not Exist' ) {
-                msgDiv.innerHTML = "<font color='green'>用户名可用</font>";
+                msgDiv.innerHTML = "<font color='white'>Username Available.</font>";
             }
         }
     }

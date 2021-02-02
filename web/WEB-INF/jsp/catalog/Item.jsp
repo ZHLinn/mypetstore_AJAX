@@ -6,7 +6,7 @@
 
 <div id="Catalog">
 
-<table>
+<table class="rwd-table">
 	<tr>
 		<td>${sessionScope.product.description}</td>
 	</tr>
@@ -36,7 +36,7 @@
 
 	<tr>
 		<td>
-            <a class="Button" href="addItemToCart?workingItemId=${item.itemId}">Add to Cart</a>
+            <a class="btn" href="addItemToCart?workingItemId=${item.itemId}">Add to Cart</a>
         </td>
 	</tr>
 </table>

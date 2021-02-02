@@ -15,7 +15,7 @@
     <form action="register" method="post">
 <%--        <form action="isUsernameExistServlet" method="post">--%>
         <h3>User Information</h3>
-        <table>
+        <table class="rwd-table">
             <tr>
                 <td>User ID:</td>
                 <td>
@@ -44,7 +44,7 @@
         <%@ include file="IncludeAccountFields.jsp"%>
         <%@ include file="VerificationForm.jsp"%>
 
-        <input type="submit" name="newAccount" value="Save Account Information" class="button" />
+        <input type="submit" name="newAccount" value="Save Account Information" class="btn" />
 
     </form>
 </div>

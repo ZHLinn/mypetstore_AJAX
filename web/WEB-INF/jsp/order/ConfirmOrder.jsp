@@ -16,7 +16,7 @@
 <div id="Catalog">
     Please confirm the information below and then press continue...
 
-    <table>
+    <table class="rwd-table">
         <tr>
             <th align="center" colspan="2"><font size="4"><b>Order</b></font>
                 <br />
@@ -98,7 +98,7 @@
 
     </table>
 
-    <a href="submitOrder" class="Button">
+    <a href="submitOrder" class="btn">
 <%--        <stripes:param name="confirmed" value="true" />--%>
         Confirm
     </a>

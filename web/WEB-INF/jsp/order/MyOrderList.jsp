@@ -9,7 +9,7 @@
 
 <h2>My Orders</h2>
 
-<table>
+<table class="rwd-table">
     <tr>
         <th>Order ID</th>
         <th>Date</th>

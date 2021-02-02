@@ -16,7 +16,7 @@
     <form action="saveAccountInfo" method="post">
         <h3>User Information</h3>
 
-        <table>
+        <table class="rwd-table">
             <tr>
                 <td>User ID:</td>
                 <td>${sessionScope.account.username}</td>
