@@ -12,7 +12,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <link rel="StyleSheet" href="css/jpetstore.css" type="text/css"
+    <link rel="StyleSheet" href="css/jpetstoree.css" type="text/css"
+          media="screen" />
+    <link rel="StyleSheet" href="css/jquery-ui.css" type="text/css"
           media="screen" />
 
     <meta name="generator"
@@ -28,7 +30,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="js/function.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/SearchBoxAutoComplete.js"></script>
+    <script type="text/javascript" src="js/LoginCardFunction.js"></script>
 </head>
 
 <body>
@@ -49,12 +53,12 @@
                 <img align="middle" src="images/separator.gif" />
                 <c:if test="${sessionScope.account != null }">
                     <c:if test="${!sessionScope.account.authenticated}">
-                        <a href="signin">Sign In</a>
+                        <a href="signin" id="login-link">Sign In</a>
                         <img align="middle" src="images/separator.gif" />
                     </c:if>
                 </c:if>
-                <c:if test="${sessionScope.account == null }">
-                    <a href="signin">Sign In</a>
+                <c:if test="${sessionScope.account == null  }">
+                    <a href="#" id="login-link">Sign In</a>
                     <img align="middle" src="images/separator.gif" />
                 </c:if>
                 <c:if test="${sessionScope.account != null }">
@@ -77,7 +81,7 @@
                 <form action="searchProduct" method="post">
                     <div class="autocomplete">
                         <input type="text" id="keyword" name="keyword" size="14" onclick="initAutoComplete();"/>
-                        <input type="submit" name="searchProducts" value="Search" />
+                        <input type="submit" name="searchProducts" value="Search" class="btn" />
                     </div>
 <%--                    <script>autocomplete(document.getElementById('keyword'), productArray )</script>--%>
 
@@ -108,6 +112,8 @@
         </div>
 
     </div>
+
+    <%@ include file="../account/LoginCard.jsp" %>
 
     <div id="Content">
 

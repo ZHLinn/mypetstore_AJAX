@@ -11,7 +11,7 @@
 
 <h3>Account Information</h3>
 
-<table>
+<table class="rwd-table">
     <tr>
         <td>First name:</td>
         <td><input type="text" name="firstName" value="${sessionScope.account.firstName}" /></td>
@@ -56,7 +56,7 @@
 
 <h3>Profile Information</h3>
 
-<table>
+<table class="rwd-table">
     <tr>
         <td>Language Preference:</td>
         <td>

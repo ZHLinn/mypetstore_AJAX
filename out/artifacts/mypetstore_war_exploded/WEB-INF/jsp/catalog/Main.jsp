@@ -20,7 +20,7 @@
 
 <div id="Main">
     <div id="Sidebar">
-        <div id="SidebarContent">
+        <div class="SidebarContent">
             <a href="viewCategory?categoryId=FISH"><img src="images/fish_icon.gif" /></a>
             <br/> Saltwater, Freshwater <br/>
             <a href="viewCategory?categoryId=DOGS"><img src="images/dogs_icon.gif" /></a>
@@ -34,19 +34,27 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="js/HoverLayerController_MainPage.js"></script>
     <div id="MainImage">
         <div id="MainImageContent">
+            <div id="HoverSideBar" > <!-- 悬浮窗 -->
+                <img>
+                <div id="HoverSidebarContent"></div>
+            </div>
             <map name="estoremap">
-                <area alt="Birds" coords="72,2,280,250" href="viewCategory?categoryId=BIRDS" shape="rect" />
-                <area alt="Fish" coords="2,180,72,250" href="viewCategory?categoryId=FISH" shape="rect" />
-                <area alt="Dogs" coords="60,250,130,320" href="viewCategory?categoryId=DOGS" shape="rect" />
-                <area alt="Reptiles" coords="140,270,210,340" href="viewCategory?categoryId=REPTILES" shape="rect" />
-                <area alt="Cats" coords="225,240,295,310" href="viewCategory?categoryId=CATS" shape="rect" />
-                <area alt="Birds" coords="280,180,350,250" href="viewCategory?categoryId=BIRDS" shape="rect" />
+                <area alt="Birds" coords="72,2,280,250" href="viewCategory?categoryId=BIRDS" shape="rect" onmouseover="showHoverLayer(alt)" onmouseout="concealHoverSideBar()"/>
+                <area alt="Fish" coords="2,180,72,250" href="viewCategory?categoryId=FISH" shape="rect" onmouseover="showHoverLayer(alt)" onmouseout="concealHoverSideBar()"/>
+                <area alt="Dogs" coords="60,250,130,320" href="viewCategory?categoryId=DOGS" shape="rect" onmouseover="showHoverLayer(alt)" onmouseout="concealHoverSideBar()"/>
+                <area alt="Reptiles" coords="140,270,210,340" href="viewCategory?categoryId=REPTILES" shape="rect" onmouseover="showHoverLayer(alt)" onmouseout="concealHoverSideBar()"/>
+                <area alt="Cats" coords="225,240,295,310" href="viewCategory?categoryId=CATS" shape="rect" onmouseover="showHoverLayer(alt)" onmouseout="concealHoverSideBar()"/>
+                <area alt="Birds" coords="280,180,350,250" href="viewCategory?categoryId=BIRDS" shape="rect" onmouseover="showHoverLayer(alt)" onmouseout="concealHoverSideBar()"/>
             </map>
             <img height="355" src="images/splash.gif" align="middle" usemap="#estoremap" width="350" />
         </div>
     </div>
+
+
+
     <div id="Separator">&nbsp;</div>
 </div>
 

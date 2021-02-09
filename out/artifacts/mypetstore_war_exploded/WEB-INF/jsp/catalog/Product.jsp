@@ -8,7 +8,7 @@
 
 <h2>${sessionScope.product.name}</h2>
 
-<table>
+<table class="rwd-table">
 	<tr>
 		<th>Item ID</th>
 		<th>Product ID</th>
@@ -31,7 +31,7 @@
 			<td>
                 <fmt:formatNumber value="${item.listPrice}" pattern="$#,##0.00" /></td>
 			<td>
-                <a class="Button" href="addItemToCart?workingItemId=${item.itemId}">Add to Cart</a>
+                <a class="btn" href="addItemToCart?workingItemId=${item.itemId}">Add to Cart</a>
             </td>
 		</tr>
 	</c:forEach>

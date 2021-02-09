@@ -9,7 +9,7 @@
 
 <div id="Catalog">
     <form action="confirmOrder" method="post">
-        <table>
+        <table class="rwd-table">
             <tr>
                 <th colspan=2>Payment Details</th>
             </tr>
@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td>Card Number:</td>
-                <td><input typr="text" name="creditCard" value="${sessionScope.order.creditCard}"/> * Use a fake
+                <td><input type="text" name="creditCard" value="${sessionScope.order.creditCard}"/> * Use a fake
                     number!</td>
             </tr>
             <tr>
@@ -77,11 +77,8 @@
 
         </table>
 
-        <input type="submit" name="newOrder" value="Continue" class="button" />
+        <input type="submit" name="newOrder" value="Continue" class="btn" />
     </form>
-
-
-
 
 </div>
 

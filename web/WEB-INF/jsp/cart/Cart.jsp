@@ -47,7 +47,9 @@
                 <c:forEach var="cartItem" items="${sessionScope.cart.cartItems}">
                     <tr itemid="${cartItem.item.itemId}">
                         <td>
-                            <a href="viewItem?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a>
+                            <a href="viewItem?itemId=${cartItem.item.itemId}">
+                                    ${cartItem.item.itemId}
+                            </a>
                         </td>
                         <td>
                                 ${cartItem.item.product.productId}
@@ -61,7 +63,7 @@
                                 ${cartItem.inStock}
                         </td>
                         <td>
-                            <input type="text" name="${cartItem.item.itemId}" value="${cartItem.quantity}" onchange="updateCartRequest()" />
+                            <input type="text" name="${cartItem.item.itemId}" value="${cartItem.cartQuantity}" onchange="updateCartRequest()" />
                         </td>
                         <td>
                             <fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" />

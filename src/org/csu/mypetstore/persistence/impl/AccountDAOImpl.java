@@ -139,6 +139,7 @@ public class AccountDAOImpl implements AccountDAO {
             pStatement.setString(3, account.getUsername());
             pStatement.setBoolean(4, account.isListOption());
             pStatement.setBoolean(5, account.isBannerOption());
+
             pStatement.executeUpdate();
 
             DBUtil.closePreparedStatement(pStatement);
@@ -203,6 +204,7 @@ public class AccountDAOImpl implements AccountDAO {
             pStatement.setString(5, account.getUsername());
             pStatement.setBoolean(3, account.isListOption());
             pStatement.setBoolean(4, account.isBannerOption());
+//            pStatement.setInt(4, 1);
 
             pStatement.executeUpdate();
 

@@ -59,7 +59,7 @@ public class OrderService {
         for (int i = 0; i < order.getLineItems().size(); i++) {
             LineItem lineItem = (LineItem) order.getLineItems().get(i);
             Item item = itemDAO.getItem(lineItem.getItemId());
-            item.setQuantity(itemDAO.getInventoryQuantity(lineItem.getItemId()));
+            item.setStockQuantity(itemDAO.getInventoryQuantity(lineItem.getItemId()));
             lineItem.setItem(item);
         }
 

@@ -6,7 +6,7 @@
 
 <div id="Catalog">
 
-    <table>
+    <table class="rwd-table">
         <tr>
             <th>&nbsp;</th>
             <th>Product ID</th>
@@ -18,7 +18,7 @@
                     <a href="viewProduct?productId=${product.productId}">${product.description}</a>
                 </td>
                 <td><b>
-                    <a href="viewProduct?productId=${product.productId}"><font color="BLACK"> ${product.productId} </font></a>
+                    <a href="viewProduct?productId=${product.productId}"> ${product.productId}</a>
                 </b></td>
                 <td>${product.name}</td>
             </tr>

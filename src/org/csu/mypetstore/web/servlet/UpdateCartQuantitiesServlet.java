@@ -68,7 +68,6 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
                 }
             } catch (Exception e) {
                 session.setAttribute("message", "The Quantities of Item must be Integer!");
-//                request.getRequestDispatcher(ERROR).forward(request, response);
                 return;
             }
         }
@@ -88,14 +87,11 @@ public class UpdateCartQuantitiesServlet extends HttpServlet {
             message.append( removedItemsString );
         }
 
-
-
         response.setContentType( "text/plain" );
         PrintWriter out = response.getWriter();
         out.write(message.toString());
         out.flush();
         out.close();
 
-//        request.getRequestDispatcher(VIEW_CART).forward(request, response);
     }
 }

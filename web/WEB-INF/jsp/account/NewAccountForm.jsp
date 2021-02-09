@@ -13,22 +13,13 @@
         <p>${requestScope.registerMsg}</p>
     </c:if>
     <form action="register" method="post">
-<%--        <form action="isUsernameExistServlet" method="post">--%>
         <h3>User Information</h3>
         <table class="rwd-table">
             <tr>
                 <td>User ID:</td>
                 <td>
-<%--                    <script type="text/javascript" src="${pageContext.request.contextPath }/js/register.js"></script>--%>
                     <input type="text" name="username" id="username" onblur="isUsernameExist();" />
-
-<%--                    <br>--%>
-<%--                    <span id="isExistInfo"></span>--%>
                     <div id="isExistInfo"></div>
-<%--                    <input type="text" name="username" id="username"  onblur="usernameIsExist();"/>--%>
-<%--                    <div id="usernameMsg"></div>--%>
-<%--                    <script type="text/javascript" src="${pageContext.request.contextPath }/js/register.js"></script>--%>
-<%--                    --%>
                 </td>
             </tr>
             <tr>

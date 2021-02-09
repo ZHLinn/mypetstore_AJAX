@@ -1,17 +1,14 @@
 package org.csu.mypetstore.persistence.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.csu.mypetstore.domain.*;
 import org.csu.mypetstore.persistence.CartDAO;
 import org.csu.mypetstore.persistence.DBUtil;
 import org.csu.mypetstore.service.CatalogService;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class CartDAOImpl implements CartDAO {
@@ -38,7 +35,6 @@ public class CartDAOImpl implements CartDAO {
             pStatement.setString(1, username);
             ResultSet resultSet = pStatement.executeQuery();
 
-
             while( resultSet.next() ){
                 CartItemDB cartItemDB = new CartItemDB();
                 cartItemDB.setItemId(resultSet.getString(1));
@@ -48,8 +44,8 @@ public class CartDAOImpl implements CartDAO {
                 if(cartItemDB.isValid()){
                     isInStock = catalogService.isItemInStock(cartItemDB.getItemId());
                     Item item = catalogService.getItem(cartItemDB.getItemId());
-                    item.setQuantity( cartItemDB.getQuantity() );
-                    cart.addItem(item,isInStock);
+                    item.setCartQuantity( cartItemDB.getQuantity() );
+                    cart.addItem(item, isInStock);
                     cartItemDBList.add(cartItemDB);
                 }
             }
