@@ -19,7 +19,16 @@ public class Item implements Serializable {
   private String attribute4;
   private String attribute5;
   private Product product;
-  private int quantity;
+  private int stockQuantity;
+  private int cartQuantity;
+
+  public int getCartQuantity() {
+    return cartQuantity;
+  }
+
+  public void setCartQuantity( int cartQuantity ) {
+    this.cartQuantity = cartQuantity;
+  }
 
   public String getItemId() {
     return itemId;
@@ -29,12 +38,12 @@ public class Item implements Serializable {
     this.itemId = itemId.trim();
   }
 
-  public int getQuantity() {
-    return quantity;
+  public int getStockQuantity() {
+    return stockQuantity;
   }
 
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
+  public void setStockQuantity( int stockQuantity ) {
+    this.stockQuantity = stockQuantity;
   }
 
   public Product getProduct() {

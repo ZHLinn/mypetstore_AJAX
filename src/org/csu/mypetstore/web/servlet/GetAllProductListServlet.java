@@ -33,13 +33,8 @@ public class GetAllProductListServlet extends HttpServlet {
 
         response.setContentType( "text/plain" );
         PrintWriter out = response.getWriter();
-
         out.print( productListString );
-
-//        System.out.println("Product Array Generated Successfully");
-
         out.flush();
         out.close();
-
     }
 }

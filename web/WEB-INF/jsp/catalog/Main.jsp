@@ -37,7 +37,7 @@
     <script type="text/javascript" src="js/HoverLayerController_MainPage.js"></script>
     <div id="MainImage">
         <div id="MainImageContent">
-            <div id="HoverSideBar" >
+            <div id="HoverSideBar" > <!-- 悬浮窗 -->
                 <img>
                 <div id="HoverSidebarContent"></div>
             </div>

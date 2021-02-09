@@ -61,6 +61,4 @@ public class CatalogService {
     public List<Product> getAllProductList(){
         return productDAO.getAllProductList();
     }
-
-
 }

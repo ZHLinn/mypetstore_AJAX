@@ -133,7 +133,7 @@ public class ItemDAOImpl implements ItemDAO
                 item.setAttribute3(resultSet.getString(12));
                 item.setAttribute4(resultSet.getString(13));
                 item.setAttribute5(resultSet.getString(14));
-                item.setQuantity(resultSet.getInt(15));
+                item.setStockQuantity(resultSet.getInt(15));
             }
             DBUtil.closeResultSet(resultSet);
             DBUtil.closePreparedStatement(pStatement);

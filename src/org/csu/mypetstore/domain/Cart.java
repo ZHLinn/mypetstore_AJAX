@@ -2,9 +2,6 @@ package org.csu.mypetstore.domain;
 
 //import com.ibatis.common.util.PaginatedArrayList;
 
-import org.csu.mypetstore.domain.CartItem;
-import org.csu.mypetstore.domain.Item;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -45,16 +42,16 @@ public class Cart implements Serializable {
         if (cartItem == null) {
             cartItem = new CartItem();
             cartItem.setItem(item);
-            if(item.getQuantity() == 0){
-                cartItem.setQuantity( 0 );
+            if(item.getCartQuantity() == 0){
+                cartItem.setCartQuantity( 0 );
             }else{
-                cartItem.setQuantity(item.getQuantity()-1);
+                cartItem.setCartQuantity(item.getCartQuantity()-1);
             }
             cartItem.setInStock(isInStock);
             itemMap.put(item.getItemId(), cartItem);
             itemList.add(cartItem);
         }
-        cartItem.incrementQuantity();
+        cartItem.incrementCartQuantity();
     }
 
     public Item removeItemById(String itemId) {
@@ -69,20 +66,20 @@ public class Cart implements Serializable {
 
     public void incrementQuantityByItemId(String itemId) {
         CartItem cartItem = (CartItem) itemMap.get(itemId);
-        cartItem.incrementQuantity();
+        cartItem.incrementCartQuantity();
     }
 
     public void setQuantityByItemId(String itemId, int quantity) {
         CartItem cartItem = (CartItem) itemMap.get(itemId);
         if(cartItem != null){
-            cartItem.setQuantity(quantity);
+            cartItem.setStockQuantity(quantity);
         }
 
     }
 
     public int getQuantityByItemId(String itemId) {
         CartItem cartItem = (CartItem) itemMap.get(itemId);
-        return cartItem.getQuantity();
+        return cartItem.getStockQuantity();
     }
 
     public BigDecimal getSubTotal() {
@@ -92,7 +89,7 @@ public class Cart implements Serializable {
             CartItem cartItem = (CartItem) items.next();
             Item item = cartItem.getItem();
             BigDecimal listPrice = item.getListPrice();
-            BigDecimal quantity = new BigDecimal(String.valueOf(cartItem.getQuantity()));
+            BigDecimal quantity = new BigDecimal(String.valueOf(cartItem.getStockQuantity()));
             subTotal = subTotal.add(listPrice.multiply(quantity));
         }
         return subTotal;

@@ -12,10 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class IsUsernameExistServlet extends HttpServlet {
-    private static final String MAIN = "/WEB-INF/jsp/catalog/Main.jsp";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher(MAIN).forward(request,response);
 
         AccountDAO accountDAO = new AccountDAOImpl();
         String username = request.getParameter("username");

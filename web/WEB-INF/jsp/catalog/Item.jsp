@@ -23,10 +23,10 @@
 		<td>${sessionScope.product.name}</td>
 	</tr>
 	<tr>
-		<td><c:if test="${sessionScope.item.quantity <= 0}">
+		<td><c:if test="${sessionScope.item.stockQuantity <= 0}">
         Back ordered.
-      </c:if> <c:if test="${sessionScope.item.quantity > 0}">
-      	${sessionScope.item.quantity} in stock.
+      </c:if> <c:if test="${sessionScope.item.stockQuantity > 0}">
+      	${sessionScope.item.stockQuantity} in stock.
 	  </c:if></td>
 	</tr>
 	<tr>

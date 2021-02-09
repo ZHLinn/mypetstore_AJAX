@@ -7,9 +7,18 @@ public class CartItem implements Serializable {
   private static final long serialVersionUID = 6620528781626504362L;
 
   private Item item;
-  private int quantity;
+  private int stockQuantity;
+  private int cartQuantity;
   private boolean inStock;
   private BigDecimal total;
+
+  public int getCartQuantity() {
+    return cartQuantity;
+  }
+
+  public void setCartQuantity( int cartQuantity ) {
+    this.cartQuantity = cartQuantity;
+  }
 
   public boolean isInStock() {
     return inStock;
@@ -32,23 +41,23 @@ public class CartItem implements Serializable {
     calculateTotal();
   }
 
-  public int getQuantity() {
-    return quantity;
+  public int getStockQuantity() {
+    return stockQuantity;
   }
 
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
+  public void setStockQuantity( int stockQuantity ) {
+    this.stockQuantity = stockQuantity;
     calculateTotal();
   }
 
-  public void incrementQuantity() {
-    quantity++;
+  public void incrementCartQuantity() {
+    cartQuantity++;
     calculateTotal();
   }
 
   private void calculateTotal() {
     if (item != null && item.getListPrice() != null) {
-      total = item.getListPrice().multiply(new BigDecimal(quantity));
+      total = item.getListPrice().multiply(new BigDecimal( cartQuantity ));
     } else {
       total = null;
     }
